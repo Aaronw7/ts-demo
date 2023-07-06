@@ -5,7 +5,7 @@ export const api = createApi({
   reducerPath: "main",
   tagTypes: ["PersonalInfo"],
   endpoints: (build) => ({
-    getPersonalInfo: build.query({
+    getPersonalInfo: build.query<void, void>({
       query: () => "personalInfo/personalInfo/",
       providesTags: ["PersonalInfo"]
     })

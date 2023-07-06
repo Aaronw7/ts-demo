@@ -1,8 +1,10 @@
 import {Box, useMediaQuery } from '@mui/material';
 import DashboardBox from '@/components/DashboardBox';
+import { useGetPersonalInfoQuery } from '@/state/api';
 
 const Dashboard = () => {
   const isAboveSmallScreens = useMediaQuery("(min-width: 1200px");
+  const { data } = useGetPersonalInfoQuery();
 
   const gridTemplateLarge = `
   "a a b"
