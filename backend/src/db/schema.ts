@@ -4,6 +4,7 @@ export const applicants = pgTable('applicants', {
   id: serial('id').primaryKey(),
   fullName: text('full_name'),
   email: text('email'),
-  phone: varchar('phone', { length: 256 }),
+  phone: text('phone'),
   hobby: text('hobby'),
+  image: varchar('image', { length: 256 }),
 });

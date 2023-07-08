@@ -48,7 +48,8 @@ async function createUserInfo() {
     fullName: 'tester2',
     email: 'test@test.com',
     phone: '1234567890',
-    hobby: 'testing'
+    hobby: 'testing',
+    image: 'text.jpg'
   }
   const insertUserInfo = await db.insert(applicants).values(applicantInfo);
 }
