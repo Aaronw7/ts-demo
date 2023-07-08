@@ -4,4 +4,5 @@ export interface getApplicantsResponse {
   email: string;
   phone: string;
   hobby: string;
+  image: string;
 }
