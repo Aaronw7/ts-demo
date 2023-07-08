@@ -6,7 +6,7 @@ export const api = createApi({
   tagTypes: ["UserInfo"],
   endpoints: (build) => ({
     getUserInfo: build.query<void, void>({
-      query: () => "awesome/applicant/",
+      query: () => "/awesome/applicant",
       providesTags: ["UserInfo"]
     })
   })
