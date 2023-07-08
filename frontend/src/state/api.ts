@@ -1,15 +1,16 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { getApplicantsResponse } from "./types";
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL }),
   reducerPath: "main",
-  tagTypes: ["UserInfo"],
+  tagTypes: ["ApplicantList"],
   endpoints: (build) => ({
-    getUserInfo: build.query<void, void>({
+    getApplicantListInfo: build.query<Array<getApplicantsResponse>, void>({
       query: () => "/awesome/applicant",
-      providesTags: ["UserInfo"]
+      providesTags: ["ApplicantList"]
     })
   })
 })
 
-export const { useGetUserInfoQuery } = api;
+export const { useGetApplicantListInfoQuery } = api;

@@ -1,23 +1,40 @@
-import {Box, useMediaQuery } from '@mui/material';
+import { Box, useMediaQuery } from '@mui/material';
+import BoxHeader from '@/components/BoxHeader';
 import DashboardBox from '@/components/DashboardBox';
-import { useGetUserInfoQuery } from '@/state/api';
+import { useGetApplicantListInfoQuery } from '@/state/api';
+import { useMemo } from 'react';
+import ApplicantList from './ApplicantList';
 
 const Dashboard = () => {
   const isAboveSmallScreens = useMediaQuery("(min-width: 1200px");
-  const { data } = useGetUserInfoQuery();
-  console.log('this is the data: ', data);
+  const { data: applicantData } = useGetApplicantListInfoQuery();
+  console.log('this is the data: ', applicantData);
+
+  const applicantList = useMemo(() => {
+    if (applicantData) {
+      return applicantData.map(({ fullName, email, phone, hobby, image }) => ({
+        name: fullName,
+        email: email,
+        phone: phone,
+        hobby: hobby,
+        image: image,
+      }));
+    }
+    return [];
+  }, [applicantData])
+  console.log('this is the applicant list: ', applicantList);
 
   const gridTemplateLarge = `
   "a a b"
   "a a b"
   "a a b"
-  "a a c"
-  "a a c"
-  "a a c"
-  "a a d"
-  "f f d"
-  "f f e"
-  "f f e"
+  "a a b"
+  "a a b"
+  "a a b"
+  "a a b"
+  "c c b"
+  "c c b"
+  "c c b"
   `;
 
   const gridTemplateSmall = `
@@ -25,22 +42,13 @@ const Dashboard = () => {
   "a"
   "a"
   "a"
-  "a"
-  "a"
-  "a"
+  "b"
+  "b"
   "b"
   "b"
   "b"
   "c"
   "c"
-  "c"
-  "d"
-  "d"
-  "e"
-  "e"
-  "f"
-  "f"
-  "f"
   `
 
   return (
@@ -62,11 +70,14 @@ const Dashboard = () => {
       }
     >
       <DashboardBox gridArea="a"></DashboardBox>
-      <DashboardBox gridArea="b"></DashboardBox>
+      <DashboardBox gridArea="b">
+        <BoxHeader
+          title="List of Applicants"
+          sideText={`${applicantList.length} Applicants`}
+        />
+        <ApplicantList />
+      </DashboardBox>
       <DashboardBox gridArea="c"></DashboardBox>
-      <DashboardBox gridArea="d"></DashboardBox>
-      <DashboardBox gridArea="e"></DashboardBox>
-      <DashboardBox gridArea="f"></DashboardBox>
     </Box>
   )
 }
