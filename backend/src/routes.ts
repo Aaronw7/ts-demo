@@ -1,12 +1,11 @@
 import express from 'express';
-import { users } from './db/schema';
-import { getUserInfo } from './index';
+import { getApplicantInfo } from './index';
 
 const router = express.Router();
 
 router.get('/applicant', async (req, res) => {
   try {
-    const data = await getUserInfo();
+    const data = await getApplicantInfo();
     console.log('is this still updating?: ', data);
     res.status(200).json(data);
   } catch (error) {

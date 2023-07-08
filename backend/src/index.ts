@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
-import { users } from './db/schema';
+import { applicants } from './db/schema';
 import dotenv from 'dotenv';
 import routes from './routes';
 
@@ -37,15 +37,18 @@ console.log(connectionString);
 const client = postgres(connectionString);
 const db = drizzle(client);
 
-export async function getUserInfo() {
-  const allInfo = await db.select().from(users);
-   return allInfo;
+export async function getApplicantInfo() {
+  const allInfo = await db.select().from(applicants);
+  console.log(allInfo);
+  return allInfo;
 }
 
 async function createUserInfo() {
-  const userInfo = {
+  const applicantInfo = {
     fullName: 'tester2',
-    phone: '1234567890'
+    email: 'test@test.com',
+    phone: '1234567890',
+    hobby: 'testing'
   }
-  const insertUserInfo = await db.insert(users).values(userInfo);
+  const insertUserInfo = await db.insert(applicants).values(applicantInfo);
 }
