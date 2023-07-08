@@ -38,8 +38,7 @@ const db = drizzle(client);
 
 export async function getUserInfo() {
   const allInfo = await db.select().from(users);
-  console.log('IS THIS WORKING?')
-  return allInfo;
+   return allInfo;
 }
 
 async function createUserInfo() {
