@@ -49,14 +49,14 @@ const Navbar = () => {
             Dashboard
           </Link>
           <Link
-            to="/profile"
-            onClick={() => setSelected("profile")}
+            to="/apply"
+            onClick={() => setSelected("apply")}
             style={{
-              color: selected === "profile" ? "inherit" : palette.grey[700],
+              color: selected === "apply" ? "inherit" : palette.grey[700],
               textDecoration: "inherit",
             }}
           >
-            Profile
+            Apply
           </Link>
         </Box>
       </Box>

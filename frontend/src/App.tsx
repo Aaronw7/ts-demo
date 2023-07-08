@@ -18,7 +18,7 @@ function App() {
             <Navbar />
             <Routes>
               <Route path="/" element={<Dashboard />} />
-              <Route path="/profile" element={<div>Profile</div>} />
+              <Route path="/apply" element={<div>Apply</div>} />
             </Routes>
           </Box>
         </ThemeProvider>
