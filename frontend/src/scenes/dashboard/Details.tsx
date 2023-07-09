@@ -1,8 +1,9 @@
 import { useGetApplicantListInfoQuery } from "@/state/api";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { useMemo } from "react";
 
 const Details = () => {
+  const { palette } = useTheme();
   const { data: applicantData } = useGetApplicantListInfoQuery();
 
   const applicantList = useMemo(() => {
@@ -21,18 +22,34 @@ const Details = () => {
 
   return (
     <Box
-    display="flex"
-    justifyContent="center"
-    alignContent="center"
-  >
-    {applicantList.length > 0 ? (
-      <Typography component="div">
-        Does this work? <Box display="inline" fontWeight="fontWeightBold">Bold!</Box>
-      </Typography>
-    ) : (
-      <Typography>No Applicants</Typography>
-    )}
-  </Box>
+      display="flex"
+      justifyContent="center"
+      alignContent="center"
+    >
+      {applicantList.length > 0 ? (
+        <Box
+          display="flex"
+          flexDirection="column"
+        >
+          <Typography component="div" variant="h3" color={palette.secondary[400]}>
+            Name: <Typography display="inline" variant="h3">{applicantList[0].name}</Typography>
+          </Typography>
+          <Typography component="div" variant="h3" color={palette.secondary[400]}>
+            E-mail: <Typography display="inline" variant="h3">{applicantList[0].email}</Typography>
+          </Typography>
+          <Typography component="div" variant="h3" color={palette.secondary[400]}>
+            Phone: <Typography display="inline" variant="h3">{applicantList[0].phone}</Typography>
+          </Typography>
+          <Typography component="div" variant="h3" color={palette.secondary[400]}>
+            Hobby: <Typography display="inline" variant="h3">{applicantList[0].hobby}</Typography>
+          </Typography>
+        </Box>
+      ) : (
+        <Box>
+          <Typography>No Applicants</Typography>
+        </Box>
+      )}
+    </Box>
   )
 }
 
