@@ -34,7 +34,6 @@ const Dashboard = () => {
   "a a c"
   "b b c"
   "b b c"
-  "b b c"
   `;
 
   const gridTemplateSmall = `
@@ -62,7 +61,7 @@ const Dashboard = () => {
       sx= {
         isAboveSmallScreens ? {
           gridTemplateColumns: "repeat(3, minmax(370px, 1fr))",
-          gridTemplateRows: "repeat(10, minmax(60px, 1fr))",
+          gridTemplateRows: "repeat(9, minmax(60px, 1fr))",
           gridTemplateAreas: gridTemplateLarge,
         } : {
           gridAutoColumns: "1fr",

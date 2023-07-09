@@ -31,16 +31,16 @@ const Details = () => {
           display="flex"
           flexDirection="column"
         >
-          <Typography component="div" variant="h3" color={palette.secondary[400]}>
+          <Typography component="div" variant="h3" color={palette.secondary[500]}>
             Name: <Typography display="inline" variant="h3">{applicantList[0].name}</Typography>
           </Typography>
-          <Typography component="div" variant="h3" color={palette.secondary[400]}>
+          <Typography component="div" variant="h3" color={palette.secondary[500]}>
             E-mail: <Typography display="inline" variant="h3">{applicantList[0].email}</Typography>
           </Typography>
-          <Typography component="div" variant="h3" color={palette.secondary[400]}>
+          <Typography component="div" variant="h3" color={palette.secondary[500]}>
             Phone: <Typography display="inline" variant="h3">{applicantList[0].phone}</Typography>
           </Typography>
-          <Typography component="div" variant="h3" color={palette.secondary[400]}>
+          <Typography component="div" variant="h3" color={palette.secondary[500]}>
             Hobby: <Typography display="inline" variant="h3">{applicantList[0].hobby}</Typography>
           </Typography>
         </Box>
