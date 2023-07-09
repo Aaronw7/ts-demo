@@ -3,12 +3,13 @@ import BoxHeader from '@/components/BoxHeader';
 import DashboardBox from '@/components/DashboardBox';
 import { useGetApplicantListInfoQuery } from '@/state/api';
 import { useMemo } from 'react';
+import Image from './Image';
+import Details from './Details';
 import ApplicantList from './ApplicantList';
 
 const Dashboard = () => {
   const isAboveSmallScreens = useMediaQuery("(min-width: 1200px");
   const { data: applicantData } = useGetApplicantListInfoQuery();
-  console.log('this is the data: ', applicantData);
 
   const applicantList = useMemo(() => {
     if (applicantData) {
@@ -22,19 +23,18 @@ const Dashboard = () => {
     }
     return [];
   }, [applicantData])
-  console.log('this is the applicant list: ', applicantList);
 
   const gridTemplateLarge = `
-  "a a b"
-  "a a b"
-  "a a b"
-  "a a b"
-  "a a b"
-  "a a b"
-  "a a b"
-  "c c b"
-  "c c b"
-  "c c b"
+  "a a c"
+  "a a c"
+  "a a c"
+  "a a c"
+  "a a c"
+  "a a c"
+  "a a c"
+  "b b c"
+  "b b c"
+  "b b c"
   `;
 
   const gridTemplateSmall = `
@@ -42,11 +42,13 @@ const Dashboard = () => {
   "a"
   "a"
   "a"
+  "a"
+  "a"
   "b"
   "b"
-  "b"
-  "b"
-  "b"
+  "c"
+  "c"
+  "c"
   "c"
   "c"
   `
@@ -69,15 +71,25 @@ const Dashboard = () => {
         }
       }
     >
-      <DashboardBox gridArea="a"></DashboardBox>
+      <DashboardBox gridArea="a">
+        <BoxHeader
+        title="Selected Applicant"
+        />
+        <Image />
+      </DashboardBox>
       <DashboardBox gridArea="b">
+        <BoxHeader
+          title="Applicant Details"
+        />
+        <Details />
+      </DashboardBox>
+      <DashboardBox gridArea="c">
         <BoxHeader
           title="List of Applicants"
           sideText={`${applicantList.length} Applicants`}
         />
         <ApplicantList />
       </DashboardBox>
-      <DashboardBox gridArea="c"></DashboardBox>
     </Box>
   )
 }

@@ -3,12 +3,10 @@ import { useTheme } from "@mui/material";
 
 type Props = {
   title: string;
-  sideText: string;
-  subtitle?: string;
-  icon?: React.ReactNode;
+  sideText?: string;
 };
 
-const BoxHeader = ({ icon, title, subtitle, sideText }: Props) => {
+const BoxHeader = ({ title, sideText }: Props) => {
   const { palette } = useTheme();
   return(
     <Box
@@ -23,12 +21,10 @@ const BoxHeader = ({ icon, title, subtitle, sideText }: Props) => {
         justifyContent="space-between"
         alignItems="center"
       >
-        {icon}
         <Box width="100%">
           <Typography variant="h4" mb="-0.1rem">
             {title}
           </Typography>
-          <Typography variant="h6">{subtitle}</Typography>
         </Box>
       </Box>
       <Typography variant="h5" fontWeight={700} color={palette.secondary[500]}>
