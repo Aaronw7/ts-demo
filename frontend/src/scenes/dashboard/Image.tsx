@@ -9,7 +9,7 @@ const Image = () => {
     if (applicantData) {
       return applicantData.map(({ id, fullName, email, phone, hobby, image }) => ({
         id: id,
-        name: fullName,
+        fullName: fullName,
         email: email,
         phone: phone,
         hobby: hobby,

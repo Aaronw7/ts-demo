@@ -14,7 +14,7 @@ const Dashboard = () => {
   const applicantList = useMemo(() => {
     if (applicantData) {
       return applicantData.map(({ fullName, email, phone, hobby, image }) => ({
-        name: fullName,
+        fullName: fullName,
         email: email,
         phone: phone,
         hobby: hobby,

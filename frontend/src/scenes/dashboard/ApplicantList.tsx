@@ -1,15 +1,19 @@
 import { useGetApplicantListInfoQuery } from "@/state/api";
 import { Avatar, Box, Button, Typography } from "@mui/material";
 import { useMemo } from "react";
+import { useDispatch } from "react-redux";
+import { setApplicant } from "@/state/applicantSlice";
+import { getApplicantsResponse } from "@/state/types";
 
 const ApplicantList = () => {
+  const dispatch = useDispatch();
   const { data: applicantData } = useGetApplicantListInfoQuery();
 
   const applicantList = useMemo(() => {
     if (applicantData) {
       return applicantData.map(({ id, fullName, email, phone, hobby, image }) => ({
         id: id,
-        name: fullName,
+        fullName: fullName,
         email: email,
         phone: phone,
         hobby: hobby,
@@ -18,6 +22,10 @@ const ApplicantList = () => {
     }
     return [];
   }, [applicantData])
+
+  const handleClick = (applicant: getApplicantsResponse) => {
+    dispatch(setApplicant(applicant));
+  }
 
   return (
     <Box
@@ -34,6 +42,7 @@ const ApplicantList = () => {
                 justifyContent:"start"
               }}
               key={applicant.id}
+              onClick={() => handleClick(applicant)}
             >
               <Box
                 display="flex"
@@ -46,7 +55,7 @@ const ApplicantList = () => {
                   src={applicant.image}
                   sx={{ marginRight:"1rem" }}
                 />
-                  <Typography variant="h3">{applicant.name}</Typography>
+                  <Typography variant="h3">{applicant.fullName}</Typography>
               </Box>
             </Button>
           ))}

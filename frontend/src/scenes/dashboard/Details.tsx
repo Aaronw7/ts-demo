@@ -10,7 +10,7 @@ const Details = () => {
     if (applicantData) {
       return applicantData.map(({ id, fullName, email, phone, hobby, image }) => ({
         id: id,
-        name: fullName,
+        fullName: fullName,
         email: email,
         phone: phone,
         hobby: hobby,
@@ -32,7 +32,7 @@ const Details = () => {
           flexDirection="column"
         >
           <Typography component="div" variant="h3" color={palette.secondary[500]}>
-            Name: <Typography display="inline" variant="h3">{applicantList[0].name}</Typography>
+            Name: <Typography display="inline" variant="h3">{applicantList[0].fullName}</Typography>
           </Typography>
           <Typography component="div" variant="h3" color={palette.secondary[500]}>
             E-mail: <Typography display="inline" variant="h3">{applicantList[0].email}</Typography>
