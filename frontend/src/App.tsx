@@ -3,8 +3,8 @@ import { createTheme } from "@mui/material/styles";
 import { useMemo } from "react";
 import { themeSettings } from "./theme";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Navbar from "@/scenes/navbar";
-import Dashboard from "@/scenes/dashboard";
+import Navbar from "@/pages/navbar";
+import Dashboard from "@/pages/dashboard";
 import { Provider } from "react-redux";
 import store from "./state/store";
 
