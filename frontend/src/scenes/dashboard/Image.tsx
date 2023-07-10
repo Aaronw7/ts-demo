@@ -1,23 +1,12 @@
-import { useGetApplicantListInfoQuery } from "@/state/api";
-import { Box, Typography } from "@mui/material";
-import { useMemo } from "react";
+import { Box, Typography, useTheme } from "@mui/material";
+import { useSelector } from "react-redux";
+import { RootState } from "@/state/store";
+
+const applicantState = (state: RootState) => state.applicant.applicant;
 
 const Image = () => {
-  const { data: applicantData } = useGetApplicantListInfoQuery();
-
-  const applicantList = useMemo(() => {
-    if (applicantData) {
-      return applicantData.map(({ id, fullName, email, phone, hobby, image }) => ({
-        id: id,
-        fullName: fullName,
-        email: email,
-        phone: phone,
-        hobby: hobby,
-        image: image,
-      }));
-    }
-    return [];
-  }, [applicantData])
+  const { palette } = useTheme();
+  const selectedApplicant = useSelector(applicantState);
 
   return (
     <Box
@@ -27,15 +16,15 @@ const Image = () => {
     height="55vh"
     marginTop={2}
   >
-    {applicantList.length > 0 ? (
+    {selectedApplicant !== null ? (
       <img
         height="100%"
         object-fit="contain"
-        src={applicantList[0].image}
+        src={selectedApplicant.image}
         alt="applicant"
       />
     ) : (
-      <Typography>No Applicants</Typography>
+      <Typography variant="h3" color={palette.secondary[500]}>Select an Applicant</Typography>
     )}
   </Box>
   )

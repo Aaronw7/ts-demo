@@ -1,24 +1,12 @@
-import { useGetApplicantListInfoQuery } from "@/state/api";
 import { Box, Typography, useTheme } from "@mui/material";
-import { useMemo } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "@/state/store";
+
+const applicantState = (state: RootState) => state.applicant.applicant;
 
 const Details = () => {
   const { palette } = useTheme();
-  const { data: applicantData } = useGetApplicantListInfoQuery();
-
-  const applicantList = useMemo(() => {
-    if (applicantData) {
-      return applicantData.map(({ id, fullName, email, phone, hobby, image }) => ({
-        id: id,
-        fullName: fullName,
-        email: email,
-        phone: phone,
-        hobby: hobby,
-        image: image,
-      }));
-    }
-    return [];
-  }, [applicantData])
+  const selectedApplicant = useSelector(applicantState);
 
   return (
     <Box
@@ -26,27 +14,31 @@ const Details = () => {
       justifyContent="center"
       alignContent="center"
     >
-      {applicantList.length > 0 ? (
+      {selectedApplicant !== null ? (
         <Box
           display="flex"
           flexDirection="column"
         >
           <Typography component="div" variant="h3" color={palette.secondary[500]}>
-            Name: <Typography display="inline" variant="h3">{applicantList[0].fullName}</Typography>
+            Name: <Typography display="inline" variant="h3">{selectedApplicant.fullName}</Typography>
           </Typography>
           <Typography component="div" variant="h3" color={palette.secondary[500]}>
-            E-mail: <Typography display="inline" variant="h3">{applicantList[0].email}</Typography>
+            E-mail: <Typography display="inline" variant="h3">{selectedApplicant.email}</Typography>
           </Typography>
           <Typography component="div" variant="h3" color={palette.secondary[500]}>
-            Phone: <Typography display="inline" variant="h3">{applicantList[0].phone}</Typography>
+            Phone: <Typography display="inline" variant="h3">{selectedApplicant.phone}</Typography>
           </Typography>
           <Typography component="div" variant="h3" color={palette.secondary[500]}>
-            Hobby: <Typography display="inline" variant="h3">{applicantList[0].hobby}</Typography>
+            Hobby: <Typography display="inline" variant="h3">{selectedApplicant.hobby}</Typography>
           </Typography>
         </Box>
       ) : (
-        <Box>
-          <Typography>No Applicants</Typography>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Typography variant="h3" color={palette.secondary[500]}>Select an Applicant</Typography>
         </Box>
       )}
     </Box>
