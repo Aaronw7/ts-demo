@@ -1,0 +1,24 @@
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { getApplicantsResponse } from './types';
+
+interface ApplicantState {
+  applicant: getApplicantsResponse | null;
+}
+
+const initialState: ApplicantState = {
+  applicant: null,
+};
+
+const applicantSlice = createSlice({
+  name: 'applicant',
+  initialState,
+  reducers: {
+    setApplicant: (state, action: PayloadAction<getApplicantsResponse>) => {
+      state.applicant = action.payload;
+    },
+  },
+});
+
+export const { setApplicant } = applicantSlice.actions;
+
+export default applicantSlice.reducer;
