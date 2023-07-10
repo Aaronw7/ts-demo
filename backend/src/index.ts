@@ -19,10 +19,7 @@ app.use(cors({
 }));
 
 // ROUTES
-app.get('/', (req, res) => {
-  res.send('Typescript Backend')
-})
-app.use('/awesome', routes);
+app.use('/', routes);
 
 // SERVER AND DATABASE
 
