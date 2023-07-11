@@ -9,8 +9,23 @@ export const api = createApi({
     getApplicantListInfo: build.query<Array<getApplicantsResponse>, void>({
       query: () => "/awesome/applicant",
       providesTags: ["ApplicantList"]
+    }),
+    createApplicant: build.mutation<getApplicantsResponse, Partial<getApplicantsResponse>>({
+      query: (applicant) => ({
+        url: "/awesome/applicant",
+        method: "POST",
+        body: applicant
+      }),
+      invalidatesTags: ["ApplicantList"]
+    }),
+    deleteApplicant: build.mutation<void, number>({
+      query: (id) => ({
+        url: `/awesome/applicant/${id}`,
+        method: "DELETE"
+      }),
+      invalidatesTags: ["ApplicantList"]
     })
   })
 })
 
-export const { useGetApplicantListInfoQuery } = api;
+export const { useGetApplicantListInfoQuery, useCreateApplicantMutation, useDeleteApplicantMutation } = api;
