@@ -22,9 +22,9 @@ router.post('/awesome/applicant', async (req: Request, res: Response) => {
   }
 })
 
-router.delete('/awesome/applicant', async (req: Request, res: Response) => {
+router.delete('/awesome/applicant/:id', async (req: Request, res: Response) => {
   try {
-    const { id } = req.body;
+    const id = Number(req.params.id);
     await deleteApplicantInfo(id);
     res.status(200).json({ message: 'Applicant deleted successfully' });
   } catch (error) {
