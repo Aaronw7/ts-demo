@@ -7,6 +7,7 @@ import postgres from 'postgres';
 import { applicants } from './db/schema';
 import dotenv from 'dotenv';
 import routes from './routes';
+import { eq } from 'drizzle-orm';
 
 // CONFIG
 dotenv.config();
@@ -30,23 +31,26 @@ server.listen(8080, () => {
 })
 
 const connectionString = process.env.DATABASE_URL;
-console.log(connectionString);
 const client = postgres(connectionString);
 const db = drizzle(client);
 
-export async function getApplicantInfo() {
+export async function getApplicantInfo(): Promise<any[]> {
   const allInfo = await db.select().from(applicants);
-  console.log(allInfo);
   return allInfo;
 }
 
-async function createUserInfo() {
+export async function createApplicantInfo(fullName: string, email: string, phone: string, hobby: string, image: string) {
   const applicantInfo = {
-    fullName: 'tester2',
-    email: 'test@test.com',
-    phone: '1234567890',
-    hobby: 'testing',
-    image: 'text.jpg'
+    fullName,
+    email,
+    phone,
+    hobby,
+    image,
   }
   const insertUserInfo = await db.insert(applicants).values(applicantInfo);
+  return insertUserInfo
+}
+
+export async function deleteApplicantInfo(id: number) {
+  await db.delete(applicants).where(eq(applicants.id, id))
 }
