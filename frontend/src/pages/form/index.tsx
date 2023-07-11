@@ -41,6 +41,7 @@ const Apply = () => {
   };
 
   const handleFormSubmit = (values: object) => {
+    // Hardcoded Image Upload
     addApplicant({ ...values, image: "https://comicvine.gamespot.com/a/uploads/scale_small/11/111746/7737320-leoyell.jpg" });
   }
 
