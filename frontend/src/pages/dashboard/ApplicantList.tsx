@@ -68,11 +68,12 @@ const ApplicantList = () => {
                     src={applicant.image}
                     sx={{ marginRight:"1rem" }}
                   />
-                    <Typography variant="h3">{applicant.fullName}</Typography>
+                  <Typography variant="h3">{applicant.fullName}</Typography>
                 </Box>
               </Button>
               <Button
                 onClick={() => deleteApplicant(applicant.id)}
+                sx={{ marginRight:"1.5rem"}}
               >
                 Delete
               </Button>
