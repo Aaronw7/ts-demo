@@ -5,6 +5,7 @@ import { themeSettings } from "./theme";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "@/pages/navbar";
 import Dashboard from "@/pages/dashboard";
+import Apply from "@/pages/form";
 import { Provider } from "react-redux";
 import store from "./state/store";
 
@@ -21,7 +22,7 @@ function App() {
               <Navbar />
               <Routes>
                 <Route path="/" element={<Dashboard />} />
-                <Route path="/apply" element={<div>Apply</div>} />
+                <Route path="/apply" element={<Apply />} />
               </Routes>
             </Box>
           </ThemeProvider>
