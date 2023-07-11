@@ -7,7 +7,7 @@ import postgres from 'postgres';
 import { applicants } from './db/schema';
 import dotenv from 'dotenv';
 import routes from './routes';
-import { eq } from 'drizzle-orm';
+import { sql, eq } from 'drizzle-orm';
 
 // CONFIG
 dotenv.config();
@@ -35,7 +35,7 @@ const client = postgres(connectionString);
 const db = drizzle(client);
 
 export async function getApplicantInfo(): Promise<any[]> {
-  const allInfo = await db.select().from(applicants);
+  const allInfo = await db.select().from(applicants).orderBy(sql`${applicants.id} asc`);
   return allInfo;
 }
 
