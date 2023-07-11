@@ -1,6 +1,6 @@
 import { Box, Button, TextField, useMediaQuery } from "@mui/material";
 import { tokens } from "@/theme";
-import { Formik } from "formik";
+import { Formik, FormikHelpers } from "formik";
 import * as yup from "yup";
 import BoxHeader from "@/components/BoxHeader";
 import { useCreateApplicantMutation } from "@/state/api";
@@ -40,9 +40,14 @@ const Apply = () => {
     },
   };
 
-  const handleFormSubmit = (values: object) => {
-    // Hardcoded Image Upload
-    addApplicant({ ...values, image: "https://comicvine.gamespot.com/a/uploads/scale_small/11/111746/7737320-leoyell.jpg" });
+  const handleFormSubmit = async (values: typeof initialValues, { resetForm }: FormikHelpers<typeof initialValues>) => {
+    try {
+      // Hardcoded Image Upload
+      await addApplicant({ ...values, image: "https://comicvine.gamespot.com/a/uploads/scale_small/11/111746/7737320-leoyell.jpg" })
+      resetForm({values: initialValues});
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -80,20 +85,7 @@ const Apply = () => {
                 name="fullName"
                 error={!!touched.fullName && !!errors.fullName}
                 helperText={touched.fullName && errors.fullName}
-                sx= {[inputStyles,
-                  // {    "& .MuiFilledInput-root": {
-                  //   backgroundColor: colors.background['light'],
-                  // },
-                  // "& .MuiFormLabel-root": {
-                  //   color: "#666666",
-                  // },
-                  // "& .MuiOutlinedInput-notchedOutline": {
-                  //   borderColor: "#CCCCCC",
-                  // },
-                  // "& .MuiFormHelperText-root": {
-                  //   color: "#FF0000",
-                  // }},
-                  { gridColumn: "span 4" }]}
+                sx= {[inputStyles, { gridColumn: "span 4" }]}
               />
               <TextField
                 fullWidth
